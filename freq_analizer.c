@@ -2,7 +2,7 @@
 #include <string.h>
 #include <malloc.h>
 
-char BUFF[1024];
+char *BUFF = (char*) calloc(1024,(sizeof(char)));
 
 char *text;
 
@@ -87,7 +87,7 @@ void analyze(){
 void broke(){
     int i;
 
-    printf("Map: \n");
+    printf("possible map: \n");
     for (i = 0; i < 26; ++i){
         printf("%c => %c\n", ordPrioChar[i], englishFreq[charToInt(ordPrioChar[i])]);
     }
@@ -101,7 +101,7 @@ int main(){
     printf("give-me the encoded text\n");
     scanf("%s",BUFF);
     textSize = strlen(BUFF);
-    text =(char *) malloc(textSize * sizeof(char));
+    text =(char *) calloc(textSize, sizeof(char));
 
     int i = 0;
     for (i = 0; BUFF[i] != '\0' ; ++i)
@@ -112,5 +112,8 @@ int main(){
 
     analyze();
     broke();
+
+    free(BUFF);
+    free(text);
     return 0;
 }
