@@ -10,11 +10,11 @@ int pi[BLOCKSIZE]           = {4,1,6,2,7,3,8,5};
 int inverse_pi[BLOCKSIZE]   = {2,4,6,1,8,3,5,7};
 
 int permute(int entry){
-    return pi[entry % 8]-1;
+    return pi[entry % BLOCKSIZE]-1;
 }
 
 int permute_inverse(int entry){
-    return inverse_pi[entry % 8]-1;
+    return inverse_pi[entry % BLOCKSIZE]-1;
 }
 
 void encriptBlock(char block[BLOCKSIZE]){
@@ -33,8 +33,8 @@ void encriptBlock(char block[BLOCKSIZE]){
 const char *verifyAndCorrect(const char *text){
     int size = strlen(text)-1;
     char * ret;
-    if(size%8 != 0){
-        int i, diff = (BLOCKSIZE - (size%8));
+    if(size%BLOCKSIZE != 0){
+        int i, diff = (BLOCKSIZE - (size%BLOCKSIZE));
         ret = (char*)calloc(size + diff,sizeof(char));
         ret[size + diff] = '\0';
         for (i = 0; i < size; ++i)
