@@ -38,8 +38,8 @@ char * makeBlock(char block[BLOCKSIZE], operation o){
 const char *verifyAndCorrect(const char *text){
     int size = strlen(text);
     char * ret;
-    if(size%8 != 0){
-        int i, diff = (BLOCKSIZE - (size%8));
+    if(size%BLOCKSIZE != 0){
+        int i, diff = (BLOCKSIZE - (size%BLOCKSIZE));
         ret = (char*)calloc(size + diff,sizeof(char));
         ret[size + diff] = '\0';
         for (i = 0; i < size; ++i)
