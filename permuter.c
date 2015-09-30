@@ -9,29 +9,34 @@
 int pi[BLOCKSIZE]           = {4,1,6,2,7,3,8,5};
 int inverse_pi[BLOCKSIZE]   = {2,4,6,1,8,3,5,7};
 
+enum operation{ENCRYPT, DECRYPT};
+
 int permute(int entry){
-    return pi[entry % 8]-1;
+    return pi[entry % BLOCKSIZE]-1;
 }
 
 int permute_inverse(int entry){
-    return inverse_pi[entry % 8]-1;
+    return inverse_pi[entry % BLOCKSIZE]-1;
 }
 
-void encriptBlock(char block[BLOCKSIZE]){
+char * makeBlock(char block[BLOCKSIZE], operation o){
     char *aux = (char*) calloc(BLOCKSIZE,sizeof(char));
     strcpy(aux, block);
-
+    char * pt = (char*) calloc(BLOCKSIZE+1,sizeof(char));
     int i;
     for (i = 0; i < BLOCKSIZE; ++i)
     {
-        aux[i] = block[permute(i)];
+        switch(o){
+            case 0    :   aux[i] = block[permute(i)];
+            break;
+            case 1    :   aux[i] = block[permute_inverse(i)];
+        }
     }
-
-    strcpy(aux,block);
+    return aux;
 }
 
 const char *verifyAndCorrect(const char *text){
-    int size = strlen(text)-1;
+    int size = strlen(text);
     char * ret;
     if(size%8 != 0){
         int i, diff = (BLOCKSIZE - (size%8));
@@ -56,7 +61,7 @@ const char *verifyAndCorrect(const char *text){
 
 void setBlocks(const char *text, char blocks[][BLOCKSIZE]){
     int block, index, textCounter = 0;
-    for (block = 0; block < (strlen(text)-1)/BLOCKSIZE; ++block)
+    for (block = 0; block < (strlen(text))/BLOCKSIZE; ++block)
     {
         for (index = 0; index < BLOCKSIZE; ++index)
         {
@@ -65,37 +70,41 @@ void setBlocks(const char *text, char blocks[][BLOCKSIZE]){
     }
 }
 
-char *encript(const char *text){
-    int nblocks = (strlen(text)-1)/BLOCKSIZE;
+char *make(const char *text, operation o){
+    int nblocks = (strlen(text))/BLOCKSIZE;
     char blocks[nblocks][BLOCKSIZE];
 
-    const char *correctedText = verifyAndCorrect(text);
+    const char *correctedText;
+
+    switch(o){
+            case 0    :   correctedText = verifyAndCorrect(text);
+            break;
+            case 1    :   correctedText = text;
+    }
+
     char *finalText = (char*)calloc(strlen(correctedText), sizeof(char));
 
     setBlocks(correctedText, blocks);
 
-    int i;
-    for (i = 0; i < nblocks; ++i)
-    {
-        encriptBlock(blocks[i]);
-        printf("%s\n",blocks[i]);
-    }
-
-    int block;
+    int i, block, textCounter=0;
     for (block = 0; block < nblocks; ++block)
     {
-        for (i = 0; i < strlen(correctedText)-1; ++i)
+        char * funcedBlock = makeBlock(blocks[block], o);
+        for (i = 0; i < BLOCKSIZE; ++i)
         {
-            finalText[i] = blocks[block][i%8];
+            finalText[textCounter++] = funcedBlock[i];
         }
     }
+
     finalText[strlen(correctedText)] = '\0';
     return finalText;
 }
 
 
 int main(){
-    const char * a = "pooesimplismenteessencialparaocco";
-    printf("%s\n", encript(a));
+    const char * a = "pooesimplesmenteessencialparacco";
+    const char * b = "epiomopsmlnetseeeecsisanrlcpcaoa";
+    char *enc = make(b, DECRYPT);
+    printf("%s\n", enc);
     return 0;
 }
