@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
+#include <stdlib.h>
 
 #define BLOCKSIZE 8
 #define undefined 'a'
@@ -101,10 +102,10 @@ char *make(const char *text, operation o){
 }
 
 
-int main(){
-    const char * a = "pooesimplesmenteessencialparacco";
-    const char * b = "epiomopsmlnetseeeecsisanrlcpcaoa";
-    char *enc = make(b, DECRYPT);
-    printf("%s\n", enc);
+int main(int argc, char ** argv){
+
+    printf("%s\n","Enter with your key... " );
+    int *chave = (int*)calloc(argc -1;
+    printf("%d\n", atoi(n));
     return 0;
 }
