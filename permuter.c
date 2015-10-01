@@ -102,10 +102,10 @@ char *make(const char *text, operation o){
 }
 
 
-int main(int argc, char ** argv){
+// int main(int argc, char ** argv){
 
-    printf("%s\n","Enter with your key... " );
-    int *chave = (int*)calloc(argc -1;
-    printf("%d\n", atoi(n));
-    return 0;
-}
+//     printf("%s\n","Enter with your key... " );
+//     int *chave = (int*)calloc(argc -1;
+//     printf("%d\n", atoi(n));
+//     return 0;
+// }

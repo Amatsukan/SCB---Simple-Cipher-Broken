@@ -3,9 +3,7 @@
 #include <string.h>
 #include "inversiveis.c"
 
-#define a 5
-#define b 7
-#define m 26
+int a = 5, b = 7,m = 26;
 
 
 int inverse_a = inverseof(a,m);
@@ -45,11 +43,11 @@ char * decript(const char * text){
 }
 
 
-int main(int argc, char const *argv[])
-{   const char * c= "qznhobxzd";
-    const char * d= "howareyou";
-    // printf("%s\n", decript(c));
-    // printf("%s\n", encript(d));
-    printf("%d\n", inverseof(a,m));
-    return 0;
-}
+// int main(int argc, char const *argv[])
+// {   const char * c= "qznhobxzd";
+//     const char * d= "howareyou";
+//     // printf("%s\n", decript(c));
+//     // printf("%s\n", encript(d));
+//     printf("%d\n", inverseof(a,m));
+//     return 0;
+// }

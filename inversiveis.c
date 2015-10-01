@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <malloc.h>
 
 const int n[3] = {26, 48, 91};
 
@@ -30,6 +31,27 @@ int inverseof(int _value, int _mod){
 }
 
 
+int isprime(int n){
+    int i;
+    for(i = 2; i<n; i++){
+        if(n % i == 0){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int euler_phi(int x){
+    if(isprime(x)) return x-1;
+    int i, result = 1;
+    for (i=2; i<x; i++){
+        if (mdc(i, x) == 1){
+            result++;
+        }
+    }
+    return result;
+}
+
 int makeTest(){
     int i, nTest;
 
@@ -51,4 +73,22 @@ int makeTest(){
 
 
     return 0;
+}
+
+int * makeTest(int m, int print = 0){
+    if (print) printf("Exist %d values for a\n", euler_phi(m));
+
+    int * ret = (int *) calloc(euler_phi(m), sizeof(int));
+    int nTest,i =0;
+    for (nTest = 0; nTest < m; ++nTest)
+    {
+        int result = mdc(m, nTest);
+
+        if(result == 1){
+            if(print) printf("a = %d\n", nTest);
+
+            ret[i++] = nTest;
+        }
+    }
+    return ret;
 }
