@@ -108,10 +108,11 @@ void broke(){
 
  }
 
-int main(){
+void go(){
     // printf("give-me the encoded text\n");
     // scanf("%s",BUFF);
     const char * BUFF = "kqerejebcppcjcrkieacuzbkrvpkrbcibqcarbjcvfcupkriofkpacuzqepbkrxpeiieabdkpbcpfcdccafieabdkpbcpfeqpkazbkrhaibkapcciburccdkdccjcidfuixpafferbiczdfkabicbbenefcupjcvkabpcydccdpkbcocperkivkscpicbrkijpkabi";
+    // const char * BUFF =  "emglosudcgdncuswysfhnsfcykdpumlwgyicoxysipjckqpkugkmgolicgincgacksnisacykzsckxecjckshysxcgoidpkzcnkshicgiwygkkgkgoldsilkgoiusigledspwzugfzccmdgyysfuszcnxeojncgyeoweupxezgacgnfglknsacigoiyckxcjuciuzcfzccndgyysfeuekuzcsocfzccnciaczejncshfzejzegmxcyhcjumgkucy";
     textSize = strlen(BUFF);
     text =(char *) calloc(textSize, sizeof(char));
 
@@ -123,5 +124,4 @@ int main(){
     // free(BUFF);
     // free(text);
     broke();
-    return 0;
 }
