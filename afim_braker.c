@@ -99,7 +99,7 @@ void broke(){
         {
             b=j;
             printf("a=%d, b=%d\n",a, b );
-            if(decript("f")[0] == 'w')
+            if(decript("c")[0] == 'e' && decript("b")[0] == 't')
                 printf("%s\n", decript(text));
 
         }
@@ -111,8 +111,7 @@ void broke(){
 int main(){
     // printf("give-me the encoded text\n");
     // scanf("%s",BUFF);
-    // const char * BUFF = "kqerejebcppcjcrkieacuzbkrvpkrbcibqcarbjcvfcupkriofkpacuzqepbkrxpeiieabdkpbcpfcdccafieabdkpbcpfeqpkazbkrhaibkapcciburccdkdccjcidfuixpafferbiczdfkabicbbenefcupjcvkabpcydccdpkbcocperkivkscpicbrkijpkabi";
-    const char * BUFF = "emglosudcgdncuswysfhnsfcykdpumlwgyicoxysipjck";
+    const char * BUFF = "kqerejebcppcjcrkieacuzbkrvpkrbcibqcarbjcvfcupkriofkpacuzqepbkrxpeiieabdkpbcpfcdccafieabdkpbcpfeqpkazbkrhaibkapcciburccdkdccjcidfuixpafferbiczdfkabicbbenefcupjcvkabpcydccdpkbcocperkivkscpicbrkijpkabi";
     textSize = strlen(BUFF);
     text =(char *) calloc(textSize, sizeof(char));
 
